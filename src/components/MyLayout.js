@@ -5,11 +5,7 @@ import { TabBar } from 'antd-mobile';
 class MyLayout extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedTab: 'redTab',
-      hidden: false,
-      fullScreen: false,
-    };
+   
   }
 
 
@@ -26,15 +22,11 @@ class MyLayout extends React.Component {
             key="Home"
             icon={<span className='iconfont icon-home' />}
             selectedIcon={<span className='iconfont icon-home' />}
-            selected={this.state.selectedTab === 'blueTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'blueTab',
-              });
-            }}
+            selected={this.props.match.url === '/'}
+            onPress={() => {this.props.history.push('/')}}
       
           >
-           1
+           {this.props.match.url === '/'?this.props.children:null}
           </TabBar.Item>
           <TabBar.Item
             icon={<span className='iconfont icon-gouwuche' />}
@@ -42,29 +34,21 @@ class MyLayout extends React.Component {
             title="购物车"
             key="Cart"
             badge={'1'}
-            selected={this.state.selectedTab === 'redTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'redTab',
-              });
-            }}
+            selected={this.props.match.url === '/Cart'}
+            onPress={() => {this.props.history.push('/Cart')}}
        
           >
-            2
+            {this.props.match.url === '/Cart'?this.props.children:null}
           </TabBar.Item>
           <TabBar.Item
             icon={<span className='iconfont icon-weibiaoti2fuzhi12' />}
             selectedIcon={<span className='iconfont icon-weibiaoti2fuzhi12' />}
             title="个人中心"
             key="Mine"
-            selected={this.state.selectedTab === 'greenTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'greenTab',
-              });
-            }}
+            selected={this.props.match.url === '/Mine'}
+            onPress={() => {this.props.history.push('/Mine')}}
           >
-            3
+            {this.props.match.url === '/Mine'?this.props.children:null}
           </TabBar.Item>
           
         </TabBar>
